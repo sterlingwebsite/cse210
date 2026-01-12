@@ -1,3 +1,12 @@
+/*
+- Store a List<Entry>
+- Add new entries
+- Display all entries
+- Save entries to a file
+- Load entries from a file (replacing current entries)
+*/
+
+
 public class Journal
 {
     public List<Entry> _entries = new List<Entry>();

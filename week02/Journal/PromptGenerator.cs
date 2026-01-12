@@ -1,3 +1,8 @@
+/*
+- Hold a list of prompt strings (at least five)
+- Return a random one when asked
+*/
+
 public class PromptGenerator
 {
     public List<string> _prompts = new List<string>();
