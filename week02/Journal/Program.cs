@@ -5,6 +5,8 @@
 - Never stores journal data itself
 - Never generates prompts
 - Never formats entries
+
+Enhancement: I added mood tracking to each journal entry.
 */
 
 using System;
@@ -41,10 +43,14 @@ class Program
                     Console.Write("> ");
                     string entryText = Console.ReadLine();
 
+                    Console.Write("How are you feeling today? ");
+                    string mood = Console.ReadLine();
+
                     Entry newEntry = new Entry();
                     newEntry._date = DateTime.Now.ToShortDateString();
                     newEntry._promptText = prompt;
                     newEntry._entryText = entryText;
+                    newEntry._mood = mood;
 
                     journal.AddEntry(newEntry);
                     Console.WriteLine("Entry added!\n");

@@ -1,0 +1,24 @@
+Abstraction is the practice of removing the complex internal details of a program from the user's immediate view and access. This helps the user interact only with the basic and necessary tools required to make the program function. Abstraction is important because it reduces complexity, improves usability, and allows programs to grow more easily.
+
+A clear example of abstraction appears in the Journal program. The user interacts only with what runs in the Program.cs file. The other files, which contain the supporting classes, each have a single, focused purpose. This separation allows the program to be modified in isolated parts and makes it easier to reach specific behaviors within the system. The user sees only what Program.cs displays, while the underlying functionality is handled by the separate classes.
+
+public class JournalEntry
+{
+    private string _prompt;
+    private string _response;
+    private DateTime _date;
+
+    public JournalEntry(string prompt, string response)
+    {
+        _prompt = prompt;
+        _response = response;
+        _date = DateTime.Now;
+    }
+
+    public string GetFormattedEntry()
+    {
+        return $"{_date.ToShortDateString()} - {_prompt}\n{_response}";
+    }
+}
+
+In this code, the fields _prompt, _response, and _date are hidden because they are private and encapsulated within their own class. The user only interacts with the GetFormattedEntry method. This simplifies the program for the user and improves clarity by separating responsibilities across different classes and files.
