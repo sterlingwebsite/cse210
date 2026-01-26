@@ -22,9 +22,49 @@ public class ReflectingActivity : Activity
         _questions.Add("What did you learn about yourself through this experience?");
         _questions.Add("How can you keep this experience in mind in the future?");
     }
-    
+
     public void RunReflection()
     {
-        
+        DisplayStartingMessage();
+
+        Random rand = new Random();
+
+        List<string> promptPool = [.. _prompts];
+        string prompt = promptPool[rand.Next(_prompts.Count)];
+        promptPool.Remove(prompt);
+
+        Console.WriteLine("\nConsider the following prompt:");
+        Console.WriteLine($"--- {prompt} ---");
+        Console.WriteLine("\nWhen you have something in mind, press Enter to continue.");
+        Console.ReadLine();
+
+        Console.WriteLine("Now ponder on each of the following questions as they relate to this experience.");
+        Console.Write("You may begin in: ");
+        ShowCountDown(5);
+
+        Console.Clear();
+
+        List<string> questionPool = [.. _questions];
+
+        int duration = GetDuration();
+        DateTime endTime = DateTime.Now.AddSeconds(duration);
+
+        while (DateTime.Now < endTime)
+        {
+            if (questionPool.Count == 0)
+            {
+                questionPool = [.. _questions];
+            }
+
+            int index = rand.Next(questionPool.Count);
+            string question = questionPool[index];
+            questionPool.RemoveAt(index);
+
+            Console.Write($"> {question} ");
+            ShowSpinner(5);
+            Console.WriteLine();
+        }
+
+        DisplayEndingMessage();
     }
 }

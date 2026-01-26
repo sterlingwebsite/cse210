@@ -16,6 +16,32 @@ public class ListingActivity : Activity
 
     public void RunListing()
     {
-        
+        DisplayStartingMessage();
+
+        Random rand = new Random();
+        string prompt = _prompts[rand.Next(_prompts.Count)];
+
+        Console.WriteLine("\nList as many responses as you can to the following prompt:");
+        Console.WriteLine($"--- {prompt} ---");
+        Console.Write("You may begin in: ");
+        ShowCountDown(5);
+
+        Console.WriteLine();
+
+        int duration = GetDuration();
+        DateTime endTime = DateTime.Now.AddSeconds(duration);
+
+        _count = 0;
+
+        while (DateTime.Now < endTime)
+        {
+            Console.Write("> ");
+            Console.ReadLine();
+            _count++;
+        }
+
+        Console.WriteLine($"\nYou listed {_count} items!");
+
+        DisplayEndingMessage();
     }
 }
