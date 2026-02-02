@@ -18,4 +18,14 @@ public abstract class Goal
     public abstract string GetDetailsString();
 
     public abstract string GetStringRepresentation();
+
+    public string GetShortName()
+    {
+        return _shortName;
+    }
+
+    public int GetPoints()
+    {
+        return _points;
+    }
 }
