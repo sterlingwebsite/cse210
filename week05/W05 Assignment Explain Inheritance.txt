@@ -1,0 +1,41 @@
+Inheritance is using the behavior from a parent class. It helps prevent duplication. When two classes share the same attributes or behaviors, a parent class can be created to hold that shared code, eliminating the need to repeat it.
+
+Inheritance is important because it helps create structure, reuse, and clarity in a program. It establishes clear relationships between classes, allows specialization, and supports maintainability and scalability.
+
+The meaning of inheritance is about building off another class. A child class automatically receives the attributes and methods of its parent class. It expresses an “is‑a” relationship—such as a car is a vehicle. A car inherits all the attributes and behaviors of a vehicle.
+
+A benefit of inheritance is writing less code. It reduces duplication and makes a program easier to maintain, extend, and keep free of bugs.
+
+An application of inheritance would be a Vehicle class with attributes like speed and capacity, and methods such as move() and stop(). Child classes like Car, Bus, or Bicycle inherit these attributes and behaviors but add or specialize them for their specific purpose.
+
+This code is a small example of inheritance. MathAssignment inherits _studentName, _topic, and GetSummary() from Assignment.
+
+public class Assignment
+{
+	protected string _studentName;
+	protected string _topic;
+
+	public Assignment(string studentName, string topic)
+	{
+		_studentName = studentName;
+		_topic = topic;
+	}
+
+	public string GetSummary()
+	{
+		return $"{_studentName} - {_topic}";
+	}
+}
+
+public class MathAssignment : Assignment
+{
+	private string _textbookSection;
+	private string _problems;
+
+	public MathAssignment(string studentName, string topic, string section, string problems)
+		: base(studentName, topic)
+	{
+		_textbookSection = section;
+		_problems = problems;
+	}
+}
