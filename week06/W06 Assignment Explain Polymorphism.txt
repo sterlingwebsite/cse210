@@ -1,0 +1,23 @@
+Polymorphism is a practice in object‑oriented programming that means “many forms.” It allows different classes to respond to the same method call in different ways. For example, you can say “every shape can compute its area,” even though each shape computes its area differently.
+
+Polymorphism is important because it lets programmers write code that works with general types. You start by creating a base class, then create subclasses that override or adjust the base class behavior to fit their specific purpose. This makes it possible to add new subclasses without rewriting existing code.
+
+The meaning of polymorphism—“many forms”—reflects the idea of writing general code in a base class and then customizing it in subclasses to meet specific needs.
+
+A benefit of polymorphism is scalability without rewriting existing code. I like to compare this to CSS: in both CSS and polymorphism, more specific rules override general ones. The original code isn’t deleted; it still applies in situations where the subclass doesn’t provide its own version.
+
+An application of polymorphism is calling the same method on different objects. Through polymorphism, each subclass provides its own implementation of the method, or the base class provides a default implementation for general cases.
+
+A code example of polymorphism is this:
+
+List<Goal> goals = new List<Goal>();
+goals.Add(new SimpleGoal("Read scriptures", 100));
+goals.Add(new EternalGoal("Practice piano", 50));
+goals.Add(new ChecklistGoal("Attend temple", 200, 10, 1000));
+
+foreach (Goal g in goals)
+{
+    g.RecordEvent();
+}
+
+The method RecordEvent() is called for each of the goals (Simple, Eternal, Checklist). The foreach loop doesn’t need to know which type of goal it’s dealing with. Each subclass defines how RecordEvent() should behave for its specific goal type. This demonstrates how polymorphism provides one interface but many behaviors.
