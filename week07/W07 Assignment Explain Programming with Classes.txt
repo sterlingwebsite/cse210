@@ -1,0 +1,79 @@
+Abstraction
+
+Abstraction focuses on the essential behavior of a programming concept—such as a class—while hiding the internal details that are unnecessary for using it. It provides a clean interface so users can run a program without seeing or understanding all the underlying code.
+
+In the Week 02 Journal Program, I used abstraction by creating classes that kept their internal data separate from the user interface in Program.cs. The Entry, Journal, and PromptGenerator classes stored prompts, responses, and dates, handled saving and loading entries, and selected prompts. Meanwhile, Program.cs acted as the user-facing interface, showing only the information needed to run the program rather than exposing how each method worked internally.
+
+For example, the LoadFromFile(string file) method in the Journal class reads saved entries, parses them, and reconstructs Entry objects:
+
+{
+	_entries.Clear();
+
+        string[] lines = File.ReadAllLines(file);
+
+        foreach (string line in lines)
+        {
+            string[] parts = line.Split("|");
+
+            Entry newEntry = new Entry();
+            newEntry._date = parts[0];
+            newEntry._promptText = parts[1];
+            newEntry._entryText = parts[2];
+            newEntry._mood = parts[3];
+
+            _entries.Add(newEntry);
+        }
+}
+
+This code is hidden from the user when they run the program, yet they still benefit from the functionality it provides.
+
+Abstraction makes the Journal program more flexible for future changes because the internal details can be modified without altering the user interface. Users can continue interacting with the program the same way, even as the underlying classes evolve or gain new features.
+
+Encapsulation
+
+Encapsulation bundles data and methods together while restricting unnecessary access. This is typically done by making fields private and exposing only the methods that should be used.
+
+In my Week 03 Scripture Memorizer program, each class hid its internal fields by marking them as private. For example, in Word.cs:
+
+private string _text;
+private bool _isHidden;
+
+These fields can only be accessed or modified by methods within the Word class. One such method is:
+
+public void Hide()
+{
+	_isHidden = true;
+}
+
+Encapsulation makes the Scripture Memorizer program more flexible because it prevents other classes from accidentally modifying or corrupting the internal state of a field. Only the correct methods can change the data, which keeps the program stable and easier to maintain.
+
+Inheritance
+
+Inheritance allows a programmer to create a base class that contains general behavior and then derive specialized classes from it. This reduces code duplication and makes it easier to update shared behavior.
+
+In my Mindfulness program, I created a base class (Activity.cs) that contains shared fields:
+
+private string _name;
+private string _description;
+private int _duration;
+
+and shared methods used by all activity types. Each derived class—such as breathing, reflecting, or listing activities—builds on this foundation.
+
+Inheritance makes the program more flexible because new activities can be added easily. For example, if I wanted to create a VisualizationActivity, I could derive it from Activity and immediately gain access to the shared fields and methods, integrating it seamlessly into the program.
+
+Polymorphism
+
+Polymorphism allows derived classes to override or customize the behavior of methods defined in a base class. This lets each child class implement behavior that fits its specific purpose while still sharing a common interface.
+
+In my EternalQuest program, the ChecklistGoal class inherits from the base Goal class:
+
+public class ChecklistGoal : Goal
+
+and overrides base methods to fulfill its responsibilities. For example:
+
+public override void RecordEvent()
+{
+        _amountCompleted++;
+}
+
+In Goal.cs, RecordEvent() has no implementation, but in ChecklistGoal it is rewritten to increment the _amountCompleted field. This allows each goal type to define its own behavior while still being treated as a Goal.
